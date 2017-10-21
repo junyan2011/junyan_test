@@ -1,0 +1,45 @@
+extends layout
+
+block page
+  - var menu = 'index'
+  a(href="/signup") Sign Up
+  br
+  a(href="/login") Log in
+  br
+
+block content
+  if !ariticles
+    | There's no published yet.
+  else if (articles.length === 0)
+    | There's no published content yet.
+    a(href="/login") Log in
+    | to post and publish.
+  else
+    each article, index in articles
+      div
+        h2
+          a(href="/articles/#{article.slug}")= article.title
+
+//- html
+//-   head
+//-     title=title
+//-     link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
+//-   body
+//-     div.container
+//-       div.jumbotron
+//-         h1 Hello!
+ 
+//-         if user
+//-           p Welcome, #{user.fullName}
+//-           p
+//-             a.small(href="profile") Edit my profile
+//-           form(action='/logout', method='POST')
+//-             button.btn.btn-default(type="submit") Logout
+//-         else
+//-           p Welcome to my app, ready to get started?
+//-           p
+//-             a.btn.btn-primary(href="/login") Login now
+//-           p
+//-             span.small Don't have an account?
+//-             span &nbsp;
+//-             a.small(href="/register") Register now
